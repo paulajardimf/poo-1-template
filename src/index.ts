@@ -300,12 +300,11 @@ app.put("/accounts/:id/balance", async (req: Request, res: Response) => {
       accountDB.owner_id,
       accountDB.created_at
     )
-    console.log(accountToEdit)
 
     await db("accounts").update({ balance: accountToEdit.getBalance() }).where({ id });
 
-    res.status(200).send(accountDB);
-    
+    res.status(200).send(accountToEdit);
+
   } catch (error) {
     console.log(error);
 
